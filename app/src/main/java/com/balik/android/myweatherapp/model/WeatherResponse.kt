@@ -1,15 +1,18 @@
 package com.balik.android.myweatherapp.model
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "weather_response")
 data class WeatherResponse(
+    @PrimaryKey(autoGenerate = true)
+    val id : Int =1,
+    @SerializedName("current_weather")
+    @Embedded
     val current_weather: CurrentWeather,
-    val daily: Daily,
-    val daily_units: DailyUnits,
-    val elevation: Double,
-    val generationtime_ms: Double,
-    val latitude: Double,
-    val longitude: Double,
-    val timezone: String,
-    val timezone_abbreviation: String,
-    val utc_offset_seconds: Int
+    @SerializedName("daily")
+    @Embedded
+    val daily: Daily
 )
