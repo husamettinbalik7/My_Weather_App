@@ -10,7 +10,7 @@ import com.balik.android.myweatherapp.databinding.ItemNextWeatherBinding
 import com.balik.android.myweatherapp.model.WeatherResponse
 import com.balik.android.myweatherapp.util.Constants
 
-class HomeAdapter(weatherResponse: WeatherResponse):
+class HomeAdapter(weatherResponse: WeatherResponse, val onClick : (Int) -> Unit):
     RecyclerView.Adapter<HomeAdapter.WeatherViewHolder>() {
 
     private val currentWeather = weatherResponse.current_weather
@@ -36,6 +36,9 @@ class HomeAdapter(weatherResponse: WeatherResponse):
                     dateTV.text = time.toString()
                     minTempTV.text=minTemp.toString()
                     maxTempTV.text = maxTemp.toString()
+                    cardView.setOnClickListener{
+                        onClick(adapterPosition)
+                    }
                 }
             }
         }
